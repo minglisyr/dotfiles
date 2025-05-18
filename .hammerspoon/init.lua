@@ -15,7 +15,7 @@ local second_monitor = "IPS236"
 --------------------------------------------------------------------------------
 -- CONFIGURATIONS
 --------------------------------------------------------------------------------
-hs.window.animationDuration = 0
+--hs.window.animationDuration = 0
 
 --------------------------------------------------------------------------------
 -- LAYOUTS
@@ -212,18 +212,16 @@ function config()
     end
   end)
 
-  hs.hotkey.bind(cmd_alt_ctrl, "R", function()
+  hs.hotkey.bind(cmd_alt_ctrl, "r", function()
     hs.reload()
     hs.alert.show("Config loaded")
---
---local win = hs.window.focusedWindow()
---    local app = win:application()
---
---          hs.alert.show(app:title())
---          
+
+    local win = hs.window.focusedWindow()
+    local app = win:application()
+       hs.alert.show(app:title())          
   end)
 
-  hs.hotkey.bind(cmd_alt_ctrl, "P", function()
+  hs.hotkey.bind(cmd_alt_ctrl, "p", function()
     hs.alert.show("Closing")
     for i,v in ipairs(closeAll) do
       local app = hs.application(v)
@@ -238,7 +236,7 @@ function config()
     end
   end)
 
-  hs.hotkey.bind(cmd_alt_ctrl, "O", function()
+  hs.hotkey.bind(cmd_alt_ctrl, "o", function()
     hs.alert.show("Openning")
     for i,v in ipairs(openAll) do
       hs.alert.show(v)
