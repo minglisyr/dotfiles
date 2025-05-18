@@ -604,29 +604,47 @@ function windowWatcherListener(element, event, watcher, userData)
 end
 
 function applicationWatcher(appName, eventType, appObject)
+  -- Handle app activated
   if (eventType == hs.application.watcher.activated) then
-    if (appName == "iTerm") then
-      appObject:selectMenuItem({"Window", "Bring All to Front"})
-    elseif (appName == "Finder") then
-      appObject:selectMenuItem({"Window", "Bring All to Front"})
+    if appObject then
+      if (appName == "iTerm") or (appName == "Finder") then
+        appObject:selectMenuItem({"Window", "Bring All to Front"})
+      end
+    else
+      hs.printf("applicationWatcher: appObject is nil for %s on activated", appName)
     end
   end
 
+  -- Handle app launched
   if (eventType == hs.application.watcher.launched) then
+    -- Wait a bit to ensure app is ready
     os.execute("sleep " .. tonumber(1))
-    applyLayout(layouts, appObject)
-    
+    if appObject then
+      applyLayout(layouts, appObject)
+    else
+      hs.printf("applicationWatcher: appObject is nil for %s on launched", appName)
+    end
+
     for i, aname in ipairs(newWindowWatcher) do
       if (appName == aname) then      
         if (not windowWatcher[aname]) then
-          hs.alert.show("Watching " .. appName)
-          windowWatcher[aname] = appObject:newWatcher(windowWatcherListener, { name = appName })
-          windowWatcher[aname]:start({hs.uielement.watcher.windowCreated})
+          if appObject then
+            hs.alert.show("Watching " .. appName)
+            windowWatcher[aname] = appObject:newWatcher(windowWatcherListener, { name = appName })
+            if windowWatcher[aname] then
+              windowWatcher[aname]:start({hs.uielement.watcher.windowCreated})
+            else
+              hs.printf("Failed to create watcher for %s", appName)
+            end
+          else
+            hs.printf("applicationWatcher: appObject is nil for %s, cannot create watcher", appName)
+          end
         end
       end
     end
   end
-  
+
+  -- Handle app terminated
   if (eventType == hs.application.watcher.terminated) then  
     for i, aname in ipairs(newWindowWatcher) do
       if (appName == aname) then      
@@ -639,6 +657,7 @@ function applicationWatcher(appName, eventType, appObject)
     end
   end
 end
+
 
 
 config()
