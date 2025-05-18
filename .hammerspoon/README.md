@@ -30,6 +30,7 @@ Open ```init.lua``` file and edit lines 12 and 13 with the name of your first an
 
 	ctrl + cmd + alt + p (closes all applications defined by closeAll variable at line 120)
 	ctrl + cmd + alt + o (open all applications defined by openAll variable at line 128)
+ 	ctrl + cmd + alt + h (hints for all opened windows, CapLetter to switch focus)
 
 # Layouts:
 
