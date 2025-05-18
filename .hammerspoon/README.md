@@ -28,8 +28,8 @@ Open ```init.lua``` file and edit lines 12 and 13 with the name of your first an
 	ctrl + cmd + alt + 3 (applies all layouts)
 	ctrl + cmd + alt + 4 (applies only one layout (focused one))
 
-	ctrl + cmd + alt + P (closes all applications defined by closeAll variable at line 205)
-	ctrl + cmd + alt + P (open all applications defined by openAll variable at line 222)
+	ctrl + cmd + alt + C (closes all applications defined by closeAll variable at line 120)
+	ctrl + cmd + alt + O (open all applications defined by openAll variable at line 128)
 
 # Layouts:
 
@@ -57,7 +57,3 @@ You can configure the variable "layouts" (line 32) according your monitor config
     end
   },
 ```
-
-If you call "ctrl + cmd + alt + 3", it will apply all layouts you defined.
-
-If you call "ctrl + cmd + alt + 4", the layout will be applied only on the focused application.
