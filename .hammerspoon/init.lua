@@ -237,7 +237,7 @@ function config()
   end)
 
   hs.hotkey.bind(cmd_alt_ctrl, "o", function()
-    hs.alert.show("Openning")
+    hs.alert.show("Opening")
     for i,v in ipairs(openAll) do
       hs.alert.show(v)
       hs.application.open(v)
