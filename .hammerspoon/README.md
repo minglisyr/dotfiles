@@ -50,7 +50,7 @@ You can configure the variable "layouts" (line 32) according your monitor config
 
 ```
   {
-    name = {"Firefox", "iTunes"},
+    name = {"Mail", "Calendar"},
     func = function(index, win)
       win:moveToScreen(hs.screen.get("Color LCD"))
       win:maximize()
